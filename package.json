@@ -4,7 +4,8 @@
   "description": "MERN chat application",
   "main": "server.js",
   "scripts": {
-    "start": "node /server.js"
+    "start": "node /server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix convofobia && npm run build --prefix convofobia"
   },
   "author": "Utkarsh Sarkari",
   "license": "ISC",
