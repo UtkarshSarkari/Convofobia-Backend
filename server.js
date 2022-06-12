@@ -17,9 +17,9 @@ const app = express();
 
 app.use(express.json());
 
-app.get('/', (req,res)=>{
-    res.send("API is running successfully");
-});
+// app.get('/', (req,res)=>{
+//     res.send("API is running successfully");
+// });
 
 app.get('/chats', (req,res)=>{
     res.send("Chat page");
@@ -35,6 +35,13 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT,console.log(`Server started on port ${PORT}`));
+
+if(process.env.NODE.ENV == 'production'){
+    app.use(express.static("convofobia/build"));
+    // app.get("*", (req,res)=>{
+    //     res.sendFile(path.resolve(__dirname, 'convofobia', 'build', 'index.html'));
+    // })
+}
 
 const io = require("socket.io")(server, {
     pingTimeout: 60000,
